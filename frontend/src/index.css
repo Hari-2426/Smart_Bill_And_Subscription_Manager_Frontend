@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-serif: 'Fraunces', 'Lora', Georgia, serif;
+    --font-sans: 'Inter', 'Manrope', sans-serif;
+    
+    /* USER LIGHT MODE */
+    --color-bg: #FBF8F2;
+    --color-card: #FFFFFF;
+    --color-card-border: #E7E2D4;
+    --color-text-primary: #1C3B2E;
+    --color-text-secondary: #8A8676;
+    
+    /* Sidebar */
+    --color-sidebar-bg: #1C3B2E;
+    --color-sidebar-border: #2E5142;
+    --color-sidebar-text: #C7CFC7;
+    --color-sidebar-text-active: #F2EFE6;
+    --color-sidebar-active: #2E5142;
+
+    /* Accent / CTA */
+    --color-accent: #1C3B2E;
+    --color-accent-hover: #2D5241;
+    --color-accent-text: #F2EFE6;
+
+    /* Status Badges */
+    --color-success-bg: #E1F0E5;
+    --color-success-text: #1C3B2E;
+    --color-warning-bg: #FAEFDA;
+    --color-warning-text: #8A6B1E;
+    --color-danger-bg: #C6461E;
+    --color-danger-text: #FFFFFF;
+    --color-danger: #C6461E;
+  }
+
+  html.dark:not(.admin-theme) {
+    /* USER DARK MODE */
+    --color-bg: #12241C;
+    --color-card: #1C3B2E;
+    --color-card-border: #2E5142;
+    --color-text-primary: #F2EFE6;
+    --color-text-secondary: #9BA69D;
+
+    /* Sidebar remains deep forest green */
+    --color-sidebar-bg: #1C3B2E;
+    --color-sidebar-border: #2E5142;
+    --color-sidebar-text: #C7CFC7;
+    --color-sidebar-text-active: #F2EFE6;
+    --color-sidebar-active: #2E5142;
+
+    /* Accent CTA flips to cream bg with forest text */
+    --color-accent: #F2EFE6;
+    --color-accent-hover: #E7E2D4;
+    --color-accent-text: #1C3B2E;
+
+    /* Status Badges */
+    --color-success-bg: #2E5142;
+    --color-success-text: #E1F0E5;
+    --color-warning-bg: #3E3B2B;
+    --color-warning-text: #FAEFDA;
+    --color-danger-bg: #C6461E;
+    --color-danger-text: #FFFFFF;
+    --color-danger: #C6461E;
+  }
+
+  /* ADMIN COMMAND CENTER THEME (Always dark navy) */
+  .admin-theme {
+    --color-bg: #0B1220;
+    --color-card: #141C2E;
+    --color-card-border: #232F47;
+    --color-text-primary: #F1EBDA;
+    --color-text-secondary: #7E8AA6;
+
+    /* Sidebar in Admin */
+    --color-sidebar-bg: #141C2E;
+    --color-sidebar-border: #232F47;
+    --color-sidebar-text: #7E8AA6;
+    --color-sidebar-text-active: #C9A24B;
+    --color-sidebar-active: #232F47;
+
+    /* Accent / CTA: Muted Gold */
+    --color-accent: #C9A24B;
+    --color-accent-hover: #B8923A;
+    --color-accent-text: #0B1220;
+
+    /* Status Badges */
+    --color-success-bg: rgba(93, 190, 143, 0.1);
+    --color-success-text: #5DBE8F;
+    --color-warning-bg: rgba(201, 162, 75, 0.1);
+    --color-warning-text: #C9A24B;
+    --color-danger-bg: rgba(224, 100, 94, 0.1);
+    --color-danger-text: #E0645E;
+    --color-danger: #E0645E;
+  }
+
+  body {
+    @apply bg-c-bg text-c-text-primary font-sans antialiased;
+    /* Cross-fade transition between dark/light themes */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Apply transitons globally to containers for soft theme cross-fade */
+  div, header, main, aside, nav, button, input, select, textarea, table, th, td {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Continuous pulse animation for overdue status badges only */
+@keyframes badge-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.pulse-overdue {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* Hover lift transition */
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -8px rgba(28, 59, 46, 0.12);
+}
+.admin-theme .hover-lift:hover {
+  box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.4);
+}
+
+/* Glassmorphism Panel for Admin Login */
+.glass-panel {
+  background: rgba(20, 28, 46, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(35, 47, 71, 0.8);
+}
