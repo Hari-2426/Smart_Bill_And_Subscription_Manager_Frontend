@@ -36,7 +36,7 @@ api.interceptors.response.use(
     if (error.response) {
       const status = error.response.status;
       const url = error.config?.url || '';
-      
+
       // We check if it is a specific request that can throw a 403 but shouldn't trigger global logout
       const isActionRequest =
         url.includes('/bills/allBills') ||
